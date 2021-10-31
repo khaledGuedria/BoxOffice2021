@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  BookmarksViewController.swift
 //  WorkshopIOSTV
 //
-//  Created by Khaled Guedria on 10/18/20.
-//  Copyright © 2020 Khaled Guedria. All rights reserved.
+//  Created by Khaled Guedria on 11/10/2021.
+//  Copyright © 2021 Khaled Guedria. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+class BookmarksViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
     //var
     var data = ["El Camino","Extraction","Project Power","Six Underground","Spenser Confidential","The Irishman"]
     
@@ -63,4 +63,3 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
 
 }
-

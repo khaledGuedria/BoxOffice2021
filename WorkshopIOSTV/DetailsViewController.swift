@@ -38,85 +38,40 @@ class DetailsViewController: UIViewController {
     
     
     //IBActions
-    @IBAction func saveFavoritesAction(_ sender: Any) {
-        
-
-        
-        if getByCreateria(movieName: movieName!) {
-            
-            let alert = UIAlertController(title: "BoxOffice", message: "Movie already exists.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Got it!", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true)
-            
-        }else {
-            
-            save()
-            let alert = UIAlertController(title: "BoxOffice", message: "Movie saved successfully. ", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true)
-        }
-        
-                
+    @IBAction func saveToFavsAction(_ sender: Any) {
+        //TO DO : Call insert Method
     }
     
+    
+
     
     //FUNCTIONS
-    
-    func save() {
+    func insertMovie() {
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let persistentContainer = appDelegate.persistentContainer
-        let managedContext = persistentContainer.viewContext
+        //TO DO : Insert movie entity in core data [local storage]
         
         
-        let entityDescription = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)
-        let object = NSManagedObject.init(entity: entityDescription!, insertInto: managedContext)
-        
-        object.setValue(movieName!, forKey: "movieName")
-        
-        do {
-            
-            try managedContext.save()
-            print("Movie saved successfully !")
-            
-        } catch {
-            
-            print("Movie insert error !")
-        }
     }
     
+    //GET BY NAME
+    /*func getByCreateria(movieName: String) -> NSManagedObject{
+        
+        //TO DO : Fetch by criteria action
+        
+    }*/
     
-    func getByCreateria(movieName: String) -> Bool{
+    
+    func prompt(title: String, message: String) {
         
-        var movieExist = false
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let persistentContainer = appDelegate.persistentContainer
-        let managedContext = persistentContainer.viewContext
+        let action = UIAlertAction(title: "Got it", style: .default, handler: nil)
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
-        let predicate = NSPredicate(format: "movieName = %@", movieName)
-        request.predicate = predicate
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
         
-        do {
-            let result = try managedContext.fetch(request)
-            if result.count > 0 {
-                
-                movieExist = true
-                print("Movie exists !")
-                
-            }
-            
-        } catch {
-            
-            print("Fetching by criteria error !")
-        }
-        
-        
-        return movieExist
     }
+   
     
     
     
